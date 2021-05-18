@@ -2,6 +2,7 @@ version: '3'
 
 volumes:
   db-data:
+  cache:
 
 services:
   web:
@@ -10,8 +11,10 @@ services:
       - '3000:3000'
     volumes:
       - '.:/product-register'
+      - cache:/cache
     environment:
       - 'DATABASE_PASSWORD=postgres'
+      - SPROCKETS_CACHE=/cache
     tty: true
     stdin_open: true
     depends_on:
